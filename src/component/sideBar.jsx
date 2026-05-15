@@ -1,8 +1,7 @@
-import { useDispatch } from "react-redux"
 import { getSongAction } from "../redux/action.js/getSong"
 import { useState } from "react"
 import { Col, Container, Form, Row } from "react-bootstrap"
-
+import { useSelector, useDispatch } from "react-redux"
 import { BiSearch } from "react-icons/bi"
 import { HiOutlineSquares2X2 } from "react-icons/hi2"
 import SidebarList from "./sidebarList"
@@ -11,6 +10,7 @@ import { IoRadioSharp } from "react-icons/io5"
 import { setQueryAction } from "../redux/action.js/getQuery"
 
 const Sidebar = ({ sidebarOpen }) => {
+  const queryHistory = useSelector((state) => state.queryHistory)
   const [localQuery, setLocalQuery] = useState("")
   const dispatch = useDispatch()
 
@@ -55,7 +55,7 @@ const Sidebar = ({ sidebarOpen }) => {
             />
 
             <div
-              className="bg-dark rounded-2 d-flex align-items-center my-5 w-100 border border-1 border-light"
+              className="bg-dark rounded-2 d-flex align-items-center mt-5 w-100 border border-1 border-light"
               data-bs-theme="dark"
             >
               <BiSearch className="text-danger mx-2" onClick={handleSearch} />
@@ -72,6 +72,28 @@ const Sidebar = ({ sidebarOpen }) => {
                   }
                 }}
               />
+            </div>
+            {/*  ricerche recenti */}
+            <div className="mt-3 w-100 mb-5">
+              <p className="text-secondary small mb-2">Ricerche recenti</p>
+
+              {queryHistory
+                ?.slice(-5)
+                .reverse()
+                .map((query, index) => (
+                  <div
+                    key={index}
+                    className="text-light small py-1 px-2 rounded hover-bg"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setLocalQuery(query)
+                      dispatch(getSongAction(query))
+                      dispatch(setQueryAction(query))
+                    }}
+                  >
+                    {query}
+                  </div>
+                ))}
             </div>
             <div>
               <SidebarList
