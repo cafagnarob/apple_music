@@ -1,10 +1,20 @@
 import { Col, Container, Row } from "react-bootstrap"
 import CardGroup from "./cardGroup"
 import FirstCardCaro from "./firstCardCaro"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import CardGroupFetch from "./cardGroupFetch"
+import { useEffect } from "react"
+import { getSongAction } from "../redux/action.js/getSong"
+import LastCards from "./Lastcard"
+import Footer from "./footer"
 
 const Main = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getSongAction("eminem"))
+  }, [])
+
   const songs = useSelector((state) => state.song)
   return (
     <>
@@ -20,6 +30,10 @@ const Main = () => {
           </div>
           <div>
             <CardGroupFetch text={"Nuove uscite"} data={songs} />
+            <CardGroupFetch data={songs} />
+          </div>
+          <div>
+            <LastCards />
           </div>
         </Row>
       </Container>

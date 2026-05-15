@@ -10,7 +10,7 @@ import { GoHomeFill } from "react-icons/go"
 import { IoRadioSharp } from "react-icons/io5"
 import { setQueryAction } from "../redux/action.js/getQuery"
 
-const Sidebar = () => {
+const Sidebar = ({ sidebarOpen }) => {
   const [localQuery, setLocalQuery] = useState("")
   const dispatch = useDispatch()
 
@@ -22,16 +22,36 @@ const Sidebar = () => {
   }
   return (
     <>
-      <Container fluid className="position-fixed top-0">
+      <Container
+        fluid
+        className={`
+        position-fixed top-0 start-0
+        bg-dark
+        min-vh-100
+        pt-5
+        d-lg-block
+        ${sidebarOpen ? "d-block" : "d-none "}
+        
+      `}
+        style={{
+          width: sidebarOpen ? "205px" : "250px",
+          zIndex: 2,
+        }}
+      >
         <Row>
           <Col
-            xs={2}
+            xs={12}
             className="bg-dark d-flex flex-column align-items-start min-vh-100 pt-5"
           >
             <img
               src="src\assets\assets\assets\logos\music.svg"
               alt="logo-music"
-              className="w-50"
+              className="w-50 d-none d-lg-block"
+            />
+            <img
+              src="src\assets\assets\assets\logos\apple.svg"
+              alt="logo-music"
+              className="w-25 d-block d-lg-none"
             />
 
             <div
