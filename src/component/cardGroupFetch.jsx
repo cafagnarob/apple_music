@@ -8,13 +8,14 @@ const CardGroupFetch = (props) => {
         <h4 className="text-light mt-5">{props.text}</h4>
         <Row>
           <div className="d-flex gap-3 gap-lg-5 ">
-            {props.data?.slice(0, 10).map((song, index) => (
+            {props.data?.slice(0, 10).map((song) => (
               <Col xs={4} xl={2}>
                 <SingleCard
-                  key={index}
+                  key={song.id}
                   img={song.album?.cover}
                   text={song.title_short}
                   subtext={song.artist.name}
+                  preview={song.preview}
                 />
               </Col>
             ))}

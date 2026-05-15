@@ -5,6 +5,7 @@ import Main from "./component/main"
 import { Col, Container, Row } from "react-bootstrap"
 import { useState } from "react"
 import Footer from "./component/footer"
+
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   return (

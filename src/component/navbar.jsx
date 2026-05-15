@@ -7,8 +7,13 @@ import { RxLoop } from "react-icons/rx"
 import ButtonAppleMusic from "./buttonAppleMusic"
 import { FaVolumeHigh } from "react-icons/fa6"
 import { HiMenuAlt4 } from "react-icons/hi"
+import { useDispatch, useSelector } from "react-redux"
+import { pauseSong, playSong } from "../redux/action/player"
 
 const NavbarApple = (props) => {
+  const dispatch = useDispatch()
+  const isPlaying = useSelector((state) => state.isPlaying)
+
   return (
     <Navbar
       expand="lg"
@@ -30,7 +35,16 @@ const NavbarApple = (props) => {
             <div className=" flex-row text-secondary gap-3  align-items-center justify-content-center d-none d-lg-flex">
               <TiArrowShuffle />
               <IoMdSkipBackward />
-              <FaPlay className="fs-4" />
+              <FaPlay
+                className="fs-4"
+                onClick={() => {
+                  if (isPlaying) {
+                    dispatch(pauseSong())
+                  } else {
+                    dispatch(playSong())
+                  }
+                }}
+              />
               <IoMdSkipForward />
               <RxLoop />
             </div>

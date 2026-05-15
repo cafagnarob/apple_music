@@ -1,4 +1,4 @@
-import { getSongAction } from "../redux/action.js/getSong"
+import { getSongAction } from "../redux/action/getSong"
 import { useState } from "react"
 import { Col, Container, Form, Row } from "react-bootstrap"
 import { useSelector, useDispatch } from "react-redux"
@@ -7,7 +7,7 @@ import { HiOutlineSquares2X2 } from "react-icons/hi2"
 import SidebarList from "./sidebarList"
 import { GoHomeFill } from "react-icons/go"
 import { IoRadioSharp } from "react-icons/io5"
-import { setQueryAction } from "../redux/action.js/getQuery"
+import { setQueryAction } from "../redux/action/getQuery"
 
 const Sidebar = ({ sidebarOpen }) => {
   const queryHistory = useSelector((state) => state.queryHistory)

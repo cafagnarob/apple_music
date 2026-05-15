@@ -4,9 +4,8 @@ import FirstCardCaro from "./firstCardCaro"
 import { useDispatch, useSelector } from "react-redux"
 import CardGroupFetch from "./cardGroupFetch"
 import { useEffect } from "react"
-import { getSongAction } from "../redux/action.js/getSong"
+import { getSongAction } from "../redux/action/getSong"
 import LastCards from "./Lastcard"
-import Footer from "./footer"
 
 const Main = () => {
   const dispatch = useDispatch()
