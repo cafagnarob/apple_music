@@ -17,7 +17,6 @@ export const getSongAction = (query) => {
           payload: data.data,
         })
       })
-
       .catch((err) => {
         console.log("errore", err)
       })

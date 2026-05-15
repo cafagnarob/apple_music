@@ -1,92 +1,44 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { getSongAction } from "../redux/action.js/getSong"
-import {
-  Button,
-  Container,
-  Form,
-  Nav,
-  Navbar,
-  NavDropdown,
-} from "react-bootstrap"
-import { IoArrowDownCircleOutline, IoPeopleOutline } from "react-icons/io5"
-import { CiBellOn } from "react-icons/ci"
-import { BiCollection, BiSearch } from "react-icons/bi"
-import { GoHomeFill } from "react-icons/go"
-import { FaSpotify } from "react-icons/fa"
+import { Col, Nav, Navbar, Row } from "react-bootstrap"
+
+import { TiArrowShuffle } from "react-icons/ti"
+import { FaPlay } from "react-icons/fa"
+import { IoMdSkipBackward, IoMdSkipForward } from "react-icons/io"
+import { RxLoop } from "react-icons/rx"
+import ButtonAppleMusic from "./buttonAppleMusic"
+import { FaVolumeHigh } from "react-icons/fa6"
 
 const NavbarApple = () => {
-  const [localQuery, setLocalQuery] = useState("")
-  const dispatch = useDispatch()
-
-  const handleSearch = () => {
-    if (!localQuery.trim()) return
-
-    dispatch(getSongAction(localQuery))
-  }
-
   return (
-    <Navbar className="bg-black">
-      <Container fluid={true}>
-        <div className="d-flex align-items-center">
-          <NavDropdown
-            title="R"
-            id="basic-nav-dropdown"
-            className="bg-danger rounded-circle fw-bold p-2"
-          >
-            <NavDropdown.Item href="#action/3.1">
-              <Nav.Link href="#link">
-                <div
-                  className="bg-dark rounded-pill d-flex align-items-center px-3 py-1 w-100"
-                  data-bs-theme="dark"
-                >
-                  <Form.Control
-                    id="search-input"
-                    type="text"
-                    placeholder="Che canzone vuoi ascoltare ?"
-                    className="bg-transparent border-0 text-white shadow-none p-0 search-input"
-                    value={localQuery}
-                    onChange={(e) => setLocalQuery(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        handleSearch()
-                      }
-                    }}
-                  />
-                </div>
-              </Nav.Link>
-            </NavDropdown.Item>
-          </NavDropdown>
-          <Navbar.Brand href="#home">
-            <img
-              src="src/assets/assets (3)/assets/logos/music.svg"
-              alt=""
-              className="text-light"
-            />
-          </Navbar.Brand>
-        </div>
-        <div className="d-flex align-items-center "></div>
-        <div className="d-flex">
-          <div className="d-none d-xl-flex me-3">
-            {/* <SpotifyBotton
-              text="Esplora Premium"
-              className="rounded-pill bg-light text-black fw-bold border-0"
-            /> */}
-            <Button className="rounded-pill bg-black text-light fw-bold border-light ms-3 ">
-              <IoArrowDownCircleOutline className="me-2" />
-              Installa app
-            </Button>
-          </div>
-          <div className="d-flex justify-content-end ">
-            <Nav.Link href="#home">
-              <CiBellOn className="fs-1  text-light  p-1 me-3 d-none d-md-flex" />
+    <Navbar expand="lg" className="bg-dark" data-bs-theme="dark">
+      <Row className="w-100">
+        <Nav className="w-100 d-flex align-items-center justify-content-between">
+          <Col xs={3}>
+            <div className="d-flex flex-row text-secondary gap-3  align-items-center justify-content-center">
+              <TiArrowShuffle />
+              <IoMdSkipBackward />
+              <FaPlay className="fs-4" />
+              <IoMdSkipForward />
+              <RxLoop />
+            </div>
+          </Col>
+          <Col xs={5} className="bg-secondary h-100">
+            <Nav.Link href="#link" className="d-flex justify-content-center">
+              <img
+                src="src\assets\assets\assets\logos\apple.svg"
+                alt="logo"
+                className=""
+              />
             </Nav.Link>
-            <Nav.Link href="#home">
-              <IoPeopleOutline className="fs-1 text-light  p-1 me-3 d-none d-md-flex " />
-            </Nav.Link>
-          </div>
-        </div>
-      </Container>
+          </Col>
+
+          <Col xs={2} className="d-flex justify-content-center">
+            <FaVolumeHigh className="text-light fs-5  " />
+          </Col>
+          <Col xs={2} className="d-flex justify-content-end">
+            <ButtonAppleMusic />
+          </Col>
+        </Nav>
+      </Row>
     </Navbar>
   )
 }
